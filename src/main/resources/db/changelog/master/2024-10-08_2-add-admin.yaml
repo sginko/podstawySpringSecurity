@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4
+      author: Sergi
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: ROLE_ADMIN
+
+  - changeSet:
+      id: 5
+      author: Sergi
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: admin
+              - column:
+                  name: password
+                  value: $2a$10$QZXmTvcbZz1k5p8PZylVFeuYUv.mOi9MyL9pSlhLVCRzUzeA0wByy
+              - column:
+                  name: enabled
+                  valueBoolean: true
+
+  - changeSet:
+      id: 6
+      author: Sergi
+      changes:
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueNumeric: 1
+              - column:
+                  name: role_id
+                  valueNumeric: 1

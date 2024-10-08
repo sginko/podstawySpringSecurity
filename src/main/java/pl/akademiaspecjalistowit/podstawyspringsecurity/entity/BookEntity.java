@@ -1,4 +1,4 @@
-package pl.akademiaspecjalistowit.podstawyspringsecurity;
+package pl.akademiaspecjalistowit.podstawyspringsecurity.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

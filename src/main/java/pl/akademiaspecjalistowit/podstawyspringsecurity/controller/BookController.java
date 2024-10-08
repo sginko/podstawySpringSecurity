@@ -2,6 +2,7 @@ package pl.akademiaspecjalistowit.podstawyspringsecurity.controller;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,17 +15,17 @@ import pl.akademiaspecjalistowit.podstawyspringsecurity.service.BookService;
 @RequestMapping("/books")
 @AllArgsConstructor
 public class BookController {
-
     private BookService bookService;
 
+    @PreAuthorize("hasAuthority('USER')")
     @GetMapping
     public List<BookDto> getBooks(){
         return bookService.getAllBooks();
     }
 
-//
-//    @PostMapping
-//    public void createNewBook(@RequestBody BookDto bookDto){
-//        boo
-//    }
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping("/new-book")
+    public void createNewBook(@RequestBody BookDto bookDto){
+        bookService.addBook(bookDto);
+    }
 }

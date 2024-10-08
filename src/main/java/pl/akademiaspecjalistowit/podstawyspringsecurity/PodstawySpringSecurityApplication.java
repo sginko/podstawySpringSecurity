@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import pl.akademiaspecjalistowit.podstawyspringsecurity.entity.BookEntity;
 import pl.akademiaspecjalistowit.podstawyspringsecurity.repository.BookRepository;
 
 @SpringBootApplication
