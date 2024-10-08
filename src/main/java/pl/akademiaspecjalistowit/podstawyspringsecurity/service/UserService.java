@@ -1,7 +1,8 @@
 //package pl.akademiaspecjalistowit.podstawyspringsecurity.service;
 //
-//import org.springframework.data.jpa.repository.JpaRepository;
-//import pl.akademiaspecjalistowit.podstawyspringsecurity.entity.UserEntity;
+//import pl.akademiaspecjalistowit.podstawyspringsecurity.dto.UserRegistrationDto;
 //
-//public interface UserService extends JpaRepository<UserEntity, Long> {
+//public interface UserService {
+//
+//    void addNewUser(UserRegistrationDto userRegistrationDto);
 //}

@@ -1,27 +1,39 @@
 //package pl.akademiaspecjalistowit.podstawyspringsecurity.entity;
 //
-//import jakarta.persistence.Entity;
-//import jakarta.persistence.GeneratedValue;
-//import jakarta.persistence.GenerationType;
-//import jakarta.persistence.Id;
+//import jakarta.persistence.*;
 //import lombok.Getter;
 //import lombok.NoArgsConstructor;
+//
+//import java.util.HashSet;
 //
 //
 //@Getter
 //@NoArgsConstructor
-//@Entity(name = "Users")
+//@Entity(name = "users")
 //public class UserEntity {
-//
 //    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    private Long id;
 //
-//    private String name;
-//    private String role;
+//    private String username;
+//    private String password;
+//    private boolean enabled;
 //
-//    public UserEntity(String name, String role) {
-//        this.name = name;
-//        this.role = "ROLE_USER";
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(
+//            name = "user_roles",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id")
+//    )
+//
+//    private Set<RoleEntity> roles = new HashSet<>();
+//
+//
+//    public UserEntity(String username, String password, boolean enabled, Set<RoleEntity> roles) {
+//        this.username = username;
+//        this.password = password;
+//        this.enabled = enabled;
+//        this.roles = roles;
 //    }
+//
 //}
