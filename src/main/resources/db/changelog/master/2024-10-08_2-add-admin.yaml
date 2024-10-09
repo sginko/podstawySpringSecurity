@@ -1,14 +1,14 @@
 databaseChangeLog:
-  - changeSet:
-      id: 4
-      author: Sergi
-      changes:
-        - insert:
-            tableName: roles
-            columns:
-              - column:
-                  name: name
-                  value: ROLE_ADMIN
+#  - changeSet:
+#      id: 4
+#      author: Sergi
+#      changes:
+#        - insert:
+#            tableName: roles
+#            columns:
+#              - column:
+#                  name: name
+#                  value: ROLE_ADMIN
 
   - changeSet:
       id: 5
@@ -22,7 +22,7 @@ databaseChangeLog:
                   value: admin
               - column:
                   name: password
-                  value: $2a$10$QZXmTvcbZz1k5p8PZylVFeuYUv.mOi9MyL9pSlhLVCRzUzeA0wByy
+                  value: $2a$10$lBMKADSge2dHEDWENpgTsu8eC3yLR6k9YmJxr.43HCmO/6HXrHgyi
               - column:
                   name: enabled
                   valueBoolean: true
@@ -32,11 +32,11 @@ databaseChangeLog:
       author: Sergi
       changes:
         - insert:
-            tableName: user_roles
+            tableName: authorities
             columns:
               - column:
-                  name: user_id
-                  valueNumeric: 1
+                  name: username
+                  value: admin
               - column:
-                  name: role_id
-                  valueNumeric: 1
+                  name: authority
+                  value: ROLE_ADMIN

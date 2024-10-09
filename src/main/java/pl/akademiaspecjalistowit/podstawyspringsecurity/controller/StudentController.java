@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class StudentController {
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public String getStudent() {
         return "jestem studentem";
