@@ -3,7 +3,7 @@ package pl.akademiaspecjalistowit.podstawyspringsecurity.dto;
 import lombok.Getter;
 
 @Getter
-public class UserRuquestDto {
+public class NewUserRequestDto {
     private String username;
     private String password;
 }

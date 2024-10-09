@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Register New User</title>
+</head>
+
+<body>
+<div id="user-error-box" class="error-box" style="display:none;">
+    <div class="error-b-c-btn"></div>
+    <span>Error during user registration</span>
+    <p></p>
+</div>
+
+<div class="employee-register-container">
+    <div id="user-message-box" class="message-box" style="display:none;">
+        <span>User has been successfully registered.</span>
+    </div>
+
+    <label for="register-user-form" class="register-employee-label">Register New User</label>
+    <form id="register-user-form">
+        <input class="input-reg-log" name="username" id="username" type="text" placeholder="Username" required>
+        <input class="input-reg-log" name="password" id="password" type="password" placeholder="Password" required>
+        <input type="submit" value="Register">
+    </form>
+</div>
+
+<script>
+    const form = document.getElementById('register-user-form');
+    form.addEventListener('submit', submitForm);
+
+    async function submitForm(event) {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const jsonData = JSON.stringify(Object.fromEntries(formData.entries()));
+
+        try {
+            const response = await fetch('http://localhost:8080/new-user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: jsonData
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                displayErrorBox("user-error-box", errorData.message || "Error during registration");
+            } else {
+                displayMessageBox("user-message-box");
+            }
+
+        } catch (error) {
+            displayErrorBox("user-error-box", error.message || "Unexpected error occurred");
+        }
+    }
+
+    function displayMessageBox(id) {
+        document.getElementById(id).style.display = 'block';
+    }
+
+    function displayErrorBox(id, message) {
+        const errorBox = document.getElementById(id);
+        errorBox.style.display = 'block';
+        errorBox.querySelector('p').textContent = message;
+    }
+</script>
+</body>
+
+</html>

@@ -12,8 +12,8 @@ import pl.akademiaspecjalistowit.podstawyspringsecurity.service.BookService;
 @RequestMapping("/books")
 @AllArgsConstructor
 public class BookController {
-    private BookService bookService;
-    private PasswordEncoder passwordEncoder;
+    private final BookService bookService;
+    private final PasswordEncoder passwordEncoder;
 
     @PreAuthorize("hasRole('USER')")
 //    @PreAuthorize("hasAuthority('ROLE_USER')")
