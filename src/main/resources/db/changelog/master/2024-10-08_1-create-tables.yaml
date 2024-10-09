@@ -42,7 +42,7 @@ databaseChangeLog:
                     unique: true
               - column:
                   name: password
-                  type: VARCHAR(255)
+                  type: VARCHAR(500)
                   constraints:
                     nullable: false
               - column:
