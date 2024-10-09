@@ -18,11 +18,11 @@ public class UserServiceImpl implements UserService {
         if (jdbcUserDetailsManager.userExists(newUserRequestDto.getUsername())) {
             throw new RuntimeException();
         }
-        jdbcUserDetailsManager.createUser(
-                User.withUsername(newUserRequestDto.getUsername())
-                        .password(passwordEncoder.encode(newUserRequestDto.getPassword()))
-                        .roles("USER")
-                        .build()
+        jdbcUserDetailsManager.createUser(User
+                .withUsername(newUserRequestDto.getUsername())
+                .password(passwordEncoder.encode(newUserRequestDto.getPassword()))
+                .roles("USER")
+                .build()
         );
     }
 }

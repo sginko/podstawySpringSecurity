@@ -27,17 +27,17 @@ public class SecurityConfig {
                     config.setAllowCredentials(true);
                     return config;
                 }))
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**", "/new-user"))
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**", "/books/new-book", "/new-user"))
 //                .csrf(AbstractHttpConfigurer::disable)
                 .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()))
                 .authorizeHttpRequests(authz -> authz
-                                .requestMatchers("/h2-console/**").permitAll()
-                                .requestMatchers("/books", "/books/check-password", "/new-user").permitAll()
-                                .requestMatchers("/books/new-book").hasRole("ADMIN")
-//                                .requestMatchers("/books/new-book").hasAuthority("ROLE_ADMIN")
+                                .requestMatchers("/books", "/books/check-password", "/h2-console/**", "/books/new-book", "/new-user").permitAll()
                                 .requestMatchers("/students").hasRole("ADMIN")
-//                                .requestMatchers("/students").hasAuthority("ROLE_ADMIN")
                                 .anyRequest().authenticated()
+//                                .requestMatchers("/h2-console/**").permitAll()
+//                                .requestMatchers("/books/new-book").hasAuthority("ROLE_ADMIN")
+//                                .requestMatchers("/students").hasRole("ADMIN")
+//                                .requestMatchers("/students").hasAuthority("ROLE_ADMIN")
                 )
                 .formLogin(withDefaults())
                 .httpBasic(withDefaults());
@@ -50,13 +50,13 @@ public class SecurityConfig {
 //    }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public JdbcUserDetailsManager jdbcUserDetailsManager(DataSource dataSource) {
+        return new JdbcUserDetailsManager(dataSource);
     }
 
     @Bean
-    public JdbcUserDetailsManager jdbcUserDetailsManager(DataSource dataSource) {
-        return new JdbcUserDetailsManager(dataSource);
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 //    @Bean
