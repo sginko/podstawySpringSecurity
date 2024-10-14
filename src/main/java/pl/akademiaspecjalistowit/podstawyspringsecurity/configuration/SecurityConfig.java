@@ -36,7 +36,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authz -> authz
                                 .requestMatchers("/books", "/books/check-password", "/h2-console/**", "/books/new-book", "/new-user").permitAll()
                                 .requestMatchers("/students").hasRole("ADMIN")
-//                                .requestMatchers("/students").hasAuthority("ROLE_ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults())
