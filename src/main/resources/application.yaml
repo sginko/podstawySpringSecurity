@@ -8,9 +8,6 @@ spring:
     password:
     driverClassName: org.h2.Driver
 
-#  jpa:
-#    database-platform: org.hibernate.dialect.H2Dialect
-
   jpa:
     hibernate:
       ddl-auto: update
@@ -22,3 +19,22 @@ spring:
 
   liquibase:
     change-log: db/changelog/db.changelog-master.yaml
+
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: Ov23liM1Cv1crDJP1LLL
+            client-secret: 6f92ab2c4cdb0a1c3066f7c2e2c053e20bce9693
+            client-name: GitHub
+            authorization-grant-type: authorization_code
+#            scope: user:email
+            scope: read:user
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+        provider:
+          github:
+            authorization-uri: https://github.com/login/oauth/authorize
+            token-uri: https://github.com/login/oauth/access_token
+            user-info-uri: https://api.github.com/user
+            user-name-attribute: id

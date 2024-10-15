@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
         jdbcUserDetailsManager.createUser(User
                 .withUsername(newUserRequestDto.getUsername())
                 .password(passwordEncoder.encode(newUserRequestDto.getPassword()))
-                .roles("ROLE_USER")
+                .roles("USER")
                 .build()
         );
     }

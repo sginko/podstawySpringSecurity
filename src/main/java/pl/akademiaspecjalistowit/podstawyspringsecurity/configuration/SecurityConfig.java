@@ -3,12 +3,9 @@ package pl.akademiaspecjalistowit.podstawyspringsecurity.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 
@@ -18,6 +15,11 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 public class SecurityConfig {
+    private final CustomOAuth2AuthenticationSuccessHandler successHandler;
+
+    public SecurityConfig(CustomOAuth2AuthenticationSuccessHandler successHandler) {
+        this.successHandler = successHandler;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -34,12 +36,16 @@ public class SecurityConfig {
 //                .csrf(AbstractHttpConfigurer::disable)
                 .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()))
                 .authorizeHttpRequests(authz -> authz
-                                .requestMatchers("/books", "/books/check-password", "/h2-console/**", "/books/new-book", "/new-user").permitAll()
+                                .requestMatchers("/h2-console/**", "/books/new-book", "/new-user").permitAll()
                                 .requestMatchers("/students").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
+                .oauth2Login(oauth2LoginConfigurer -> {
+                    oauth2LoginConfigurer.successHandler(successHandler);
+                })
                 .formLogin(withDefaults())
                 .httpBasic(withDefaults());
+
         return http.build();
     }
 
