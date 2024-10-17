@@ -24,7 +24,7 @@ public class BookController {
         return bookService.getAllBooks();
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
 //    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/new-book")
@@ -32,9 +32,9 @@ public class BookController {
         bookService.addBook(bookDto);
     }
 
-    @GetMapping("/check-password") //http://localhost:8080/books/check-password?rawPassword=admin
-    public boolean checkPassword(@RequestParam String rawPassword) {
-        String hashedPassword = "$2a$10$QZXmTvcbZz1k5p8PZylVFeuYUv.mOi9MyL9pSlhLVCRzUzeA0wByy";
-        return passwordEncoder.matches(rawPassword, hashedPassword);
-    }
+//    @GetMapping("/check-password") //http://localhost:8080/books/check-password?rawPassword=admin
+//    public boolean checkPassword(@RequestParam String rawPassword) {
+//        String hashedPassword = "$2a$10$QZXmTvcbZz1k5p8PZylVFeuYUv.mOi9MyL9pSlhLVCRzUzeA0wByy";
+//        return passwordEncoder.matches(rawPassword, hashedPassword);
+//    }
 }

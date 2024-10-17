@@ -1,6 +1,8 @@
 spring:
   application:
     name: podstawySpringSecurity
+  session:
+    store-type: jdbc
 
   datasource:
     url: jdbc:h2:mem:mydb
@@ -29,7 +31,6 @@ spring:
             client-secret: 6f92ab2c4cdb0a1c3066f7c2e2c053e20bce9693
             client-name: GitHub
             authorization-grant-type: authorization_code
-#            scope: user:email
             scope: read:user
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
         provider:
