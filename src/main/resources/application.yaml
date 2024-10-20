@@ -3,6 +3,8 @@ spring:
     name: podstawySpringSecurity
   session:
     store-type: jdbc
+    timeout: 30s
+    cleanup-cron: 1 * * * * *
 
   datasource:
     url: jdbc:h2:mem:mydb

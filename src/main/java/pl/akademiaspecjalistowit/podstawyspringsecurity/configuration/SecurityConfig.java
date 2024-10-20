@@ -40,7 +40,6 @@ public class SecurityConfig {
                 })
                 .formLogin(withDefaults())
                 .httpBasic(withDefaults());
-
         return http.build();
     }
 
